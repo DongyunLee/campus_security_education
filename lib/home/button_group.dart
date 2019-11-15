@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class ButtonGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // const border_color = Colors.limeAccent;
     return Column(
       children: <Widget>[
         SizedBox(
@@ -15,25 +16,28 @@ class ButtonGroup extends StatelessWidget {
           children: <Widget>[
             IconTextButton(
               color: Colors.deepPurpleAccent,
+//              borderColor: border_color,
               btnType: BtnType.flat,
               icon: Icon(Icons.school),
               label: Text('安全课程'),
               onPress: () {},
             ),
             IconTextButton(
-              color: Colors.purple,
-              btnType: BtnType.flat,
+              color: Colors.pink,
+//              borderColor: border_color,
+              btnType: BtnType.outline,
               icon: Icon(Icons.spellcheck),
               label: Text('我要考试'),
               onPress: () {},
             ),
             IconTextButton(
               color: Colors.teal,
+//              borderColor: border_color,
               btnType: BtnType.flat,
               icon: Icon(Icons.book),
               label: Text('安全百科'),
               onPress: () {},
-            )
+            ),
           ],
         )
       ],

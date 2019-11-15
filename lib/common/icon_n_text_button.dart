@@ -1,51 +1,89 @@
-import 'dart:ffi';
+library icon_text_button;
 
 import 'package:flutter/material.dart';
 
+///
+/// The enum values Of the button's type
+/// 按钮类型的枚举值
+///
 enum BtnType { raise, outline, flat, icon }
 
+///
+/// The Button with icon & text together
+/// 图文按钮
+///
 class IconTextButton extends StatefulWidget {
+  ///
+  /// The button style that you will use
+  /// 你要使用的按钮组件样式
+  ///
   final BtnType btnType;
 
-  // icon图标
-  @required
+  ///
+  /// The icon you want to display
+  /// icon图标
+  ///
   final Icon icon;
 
-  // 图标下的文字
-  @required
-  final Text label;
+  ///
+  /// The text you will display under the icon
+  /// 图标下的文字
+  ///
+  final label;
 
-  // 大小
-  final Double size;
+  ///
+  /// The size of whole button
+  /// 大小
+  ///
+  final double size;
 
-  // 颜色
+  ///
+  /// The color of icon & text
+  /// 颜色
+  ///
   final Color color;
 
-  // 背景颜色
+  ///
+  /// The color of Background
+  /// 背景颜色
+  ///
   final Color bgColor;
 
-  // 点击事件
-  @required
-  final Function onPress;
+  ///
+  /// The event when you click our button
+  /// 点击事件
+  ///
+  final VoidCallback onPress;
+
+  final Color borderColor;
 
   const IconTextButton(
       {Key key,
-      this.icon,
-      this.label,
+        @required this.icon,
+        @required this.label,
       this.size,
       this.color,
       this.bgColor,
       this.btnType,
-      this.onPress})
+        @required this.onPress,
+        this.borderColor})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _IconTextButtonState();
 }
 
+///
+/// The State of IconTextButton
+/// 状态类
+///
 class _IconTextButtonState extends State<IconTextButton> {
   @override
   Widget build(BuildContext context) {
+    ///
+    /// The detail of our button
+    /// 按钮的内部实现
+    ///
     var wid = Padding(
       padding: new EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 30.0),
       child: Column(
@@ -58,30 +96,58 @@ class _IconTextButtonState extends State<IconTextButton> {
         ],
       ),
     );
+
+    ///
+    /// The switcher of button type
+    /// 按钮类型处理
+    ///
     switch (widget.btnType) {
       case BtnType.outline:
-        return OutlineButton(
-          child: wid,
-          textColor: widget.color,
-          onPressed: widget.onPress,
+        return Ink(
+          decoration: ShapeDecoration(
+            color: widget.bgColor,
+            shape: Border(),
+          ),
+          child: OutlineButton(
+            child: wid,
+            splashColor: widget.color,
+            textColor: widget.color,
+            borderSide: widget.borderColor != null
+                ? BorderSide(color: widget.borderColor)
+                : null,
+            onPressed: widget.onPress,
+          ),
         );
       case BtnType.flat:
         return FlatButton(
           child: wid,
           textColor: widget.color,
+          splashColor: widget.color,
+          color: widget.bgColor,
           onPressed: widget.onPress,
         );
       case BtnType.icon:
-        return IconButton(
-          icon: widget.icon,
-          color: widget.color,
-          tooltip: widget.label.toString(),
-          onPressed: widget.onPress,
+        return Container(
+          child: Ink(
+            decoration: ShapeDecoration(
+              color: widget.bgColor,
+              shape: Border(),
+            ),
+            child: IconButton(
+              icon: widget.icon,
+              color: widget.color,
+              splashColor: widget.color,
+              tooltip: widget.label.data,
+              onPressed: widget.onPress,
+            ),
+          ),
         );
       default:
         return RaisedButton(
           child: wid,
           textColor: widget.color,
+          splashColor: widget.color,
+          color: widget.bgColor,
           onPressed: widget.onPress,
         );
     }
