@@ -29,7 +29,7 @@ class IconTextButton extends StatefulWidget {
   /// The text you will display under the icon
   /// 图标下的文字
   ///
-  final label;
+  final Text label;
 
   ///
   /// The size of whole button
@@ -57,6 +57,12 @@ class IconTextButton extends StatefulWidget {
 
   final Color borderColor;
 
+  ///
+  /// If you want the Ink Splash
+  /// 是否需要墨水溅射效果
+  ///
+  final bool splash;
+
   const IconTextButton(
       {Key key,
         @required this.icon,
@@ -66,7 +72,8 @@ class IconTextButton extends StatefulWidget {
       this.bgColor,
       this.btnType,
         @required this.onPress,
-        this.borderColor})
+        this.borderColor,
+        this.splash})
       : super(key: key);
 
   @override
@@ -80,6 +87,8 @@ class IconTextButton extends StatefulWidget {
 class _IconTextButtonState extends State<IconTextButton> {
   @override
   Widget build(BuildContext context) {
+    var splash = widget.splash ?? false;
+  
     ///
     /// The detail of our button
     /// 按钮的内部实现
@@ -96,7 +105,7 @@ class _IconTextButtonState extends State<IconTextButton> {
         ],
       ),
     );
-
+  
     ///
     /// The switcher of button type
     /// 按钮类型处理
@@ -110,7 +119,7 @@ class _IconTextButtonState extends State<IconTextButton> {
           ),
           child: OutlineButton(
             child: wid,
-            splashColor: widget.color,
+            splashColor: splash ? widget.color : null,
             textColor: widget.color,
             borderSide: widget.borderColor != null
                 ? BorderSide(color: widget.borderColor)
@@ -122,7 +131,7 @@ class _IconTextButtonState extends State<IconTextButton> {
         return FlatButton(
           child: wid,
           textColor: widget.color,
-          splashColor: widget.color,
+          splashColor: splash ? widget.color : null,
           color: widget.bgColor,
           onPressed: widget.onPress,
         );
@@ -136,7 +145,7 @@ class _IconTextButtonState extends State<IconTextButton> {
             child: IconButton(
               icon: widget.icon,
               color: widget.color,
-              splashColor: widget.color,
+              splashColor: splash ? widget.color : null,
               tooltip: widget.label.data,
               onPressed: widget.onPress,
             ),
@@ -146,7 +155,7 @@ class _IconTextButtonState extends State<IconTextButton> {
         return RaisedButton(
           child: wid,
           textColor: widget.color,
-          splashColor: widget.color,
+          splashColor: splash ? widget.color : null,
           color: widget.bgColor,
           onPressed: widget.onPress,
         );
