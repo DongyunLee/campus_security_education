@@ -28,8 +28,8 @@ class ButtonGroup extends StatelessWidget {
               onPress: () {},
             ),
             IconTextButton(
-              icon: Icon(Icons.spellcheck),
-              label: Text('我要考试'),
+              icon: Icon(Icons.book),
+              label: Text('安全百科'),
               color: Colors.teal,
               btnType: BtnType.flat,
               onPress: () {},

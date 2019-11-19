@@ -1,4 +1,3 @@
-import 'package:campus_security_education/common/bottom_bar.dart';
 import 'package:campus_security_education/home/banner.dart';
 import 'package:campus_security_education/home/button_group.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +19,6 @@ class _HomePageState extends State<HomePage>
       appBar: AppBar(
           centerTitle: true,
           title: Text(widget.title)
-      ),
-      bottomNavigationBar: BottomBar(
-        index: 0,
       ),
       body: Column(
         children: <Widget>[BannerView(), ButtonGroup()],

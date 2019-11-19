@@ -1,4 +1,3 @@
-import 'package:campus_security_education/common/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class Mine extends StatefulWidget {
@@ -10,8 +9,10 @@ class _MineState extends State<Mine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomBar(
-        index: 3,
+      appBar: AppBar(
+        title: Text('我的'),
+        centerTitle: true,
+        
       ),
     );
   }
