@@ -1,16 +1,16 @@
 import 'package:campus_security_education/pack/icon_n_text_button.dart';
+import 'package:campus_security_education/pack/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ButtonGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+  
     return Column(
       children: <Widget>[
-        SizedBox(
-          height: 20.0,
-        ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             IconTextButton(
@@ -37,7 +37,7 @@ class ButtonGroup extends StatelessWidget {
           ],
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             IconTextButton(
@@ -46,19 +46,25 @@ class ButtonGroup extends StatelessWidget {
               color: Colors.pink,
               btnType: BtnType.flat,
               onPress: () {},
-            ), IconTextButton(
+            ),
+            IconTextButton(
               icon: Icon(Icons.account_balance_wallet),
               label: Text('寻物招领'),
               color: Colors.green,
               btnType: BtnType.flat,
               onPress: () {},
             ),
-            Container(
-              alignment: Alignment.center,
-              width: 110.0,
-            )
+            IconTextButton(
+              label: Text(''),
+              onPress: () {},
+              icon: Icon(null),
+              btnType: BtnType.flat,
+            ),
           ],
-        )
+        ),
+        SizedBox(
+          height: SizeConfig.safeBlockHeight * 2,
+        ),
       ],
     );
   }

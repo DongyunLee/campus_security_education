@@ -1,5 +1,6 @@
 library icon_text_button;
 
+import 'package:campus_security_education/pack/size_config.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -87,21 +88,40 @@ class IconTextButton extends StatefulWidget {
 class _IconTextButtonState extends State<IconTextButton> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+  
     var splash = widget.splash ?? false;
+  
+    double size = widget.size ?? 3.5;
   
     ///
     /// The detail of our button
     /// 按钮的内部实现
     ///
     var wid = Padding(
-      padding: new EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 30.0),
+      padding: new EdgeInsets.fromLTRB(
+        SizeConfig.safeBlockWidth * 0.8,
+        SizeConfig.safeBlockHeight * 1.8,
+        SizeConfig.safeBlockWidth * 0.8,
+        SizeConfig.safeBlockHeight * 1.8,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          widget.icon,
-          const SizedBox(height: 8.0),
-          widget.label
+          Icon(
+            widget.icon.icon,
+            size: SizeConfig.safeBlockWidth * size * 1.5,
+          ),
+          SizedBox(
+            height: SizeConfig.safeBlockHeight * 0.8,
+          ),
+          Text(
+            widget.label.data,
+            style: TextStyle(
+              fontSize: SizeConfig.safeBlockWidth * size,
+            ),
+          ),
         ],
       ),
     );
