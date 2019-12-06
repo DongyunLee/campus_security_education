@@ -56,7 +56,7 @@ class ButtonGroup extends StatelessWidget {
             ),
             IconTextButton(
               label: Text(''),
-              onPress: () {},
+              onPress: null,
               icon: Icon(null),
               btnType: BtnType.flat,
             ),
